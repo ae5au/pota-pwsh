@@ -1,7 +1,7 @@
 # Determine platform and make assumption about logfile path. Manually set it if this doesn't work for you
 if ($IsLinux) { $LogFile = "~/.local/share/WSJT-X/wsjtx.log" }
 elseif ($IsMacOS) { $LogFile = "~/Library/Application Support/WSJT-X/wsjtx.log" }
-elseif { $LogFile = "~/AppData/Local/WSJT-X/wsjtx.log" }
+else { $LogFile = "~/AppData/Local/WSJT-X/wsjtx.log" }
 
 Write-Host "Using log file: $LogFile"
 
