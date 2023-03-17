@@ -1,15 +1,9 @@
-if ($IsLinux) {
-    $LogFile = "~/.local/share/WSJT-X/wsjtx.log"
-    Write-Host "Using log file: $LogFile"
-}
-elseif ($IsMacOS) {
-    $LogFile = "~/Library/Application Support/WSJT-X/wsjtx.log"
-    Write-Host "Using log file: $LogFile"
-}
-elseif ($IsWindows) {
-    $LogFile = "~/AppData/Local/WSJT-X/wsjtx.log"
-    Write-Host "Using log file: $LogFile"
-}
+# Determine platform and make assumption about logfile path. Manually set it if this doesn't work for you
+if ($IsLinux) { $LogFile = "~/.local/share/WSJT-X/wsjtx.log" }
+elseif ($IsMacOS) { $LogFile = "~/Library/Application Support/WSJT-X/wsjtx.log" }
+elseif { $LogFile = "~/AppData/Local/WSJT-X/wsjtx.log" }
+
+Write-Host "Using log file: $LogFile"
 
 $UTCToday = (Get-Date).ToUniversalTime().ToString("yyyy-MM-dd")
 
@@ -24,5 +18,4 @@ while($UTCToday -eq (Get-Date).ToUniversalTime().ToString("yyyy-MM-dd"))
     $Summary | select Name,Count | Out-Host
     Write-Host "Total contacts: $($Summary.Count)"
     1..5 | %{Write-Host "." -NoNewline; Start-Sleep -Seconds 1}
-
 }
