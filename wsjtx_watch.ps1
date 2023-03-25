@@ -48,10 +48,14 @@ while($UTCToday -eq (Get-Date).ToUniversalTime().ToString("yyyy-MM-dd"))
     Clear-Host
     $Summary | select Name,Count | Sort-Object Name | Out-Host
     Write-Host "Total contacts: $($Summary.Count)"
-    Write-Host
-    Write-Host "Received spots:"
-    $RxSpots | Sort-Object activator | Format-Table activator,reference,name -HideTableHeaders | Out-Host
-    Write-Host "All spots:"
-    $Spots | ?{$_.mode -like "FT*"} | Sort-Object frequency,mode,activator | Format-Table activator,reference,frequency,mode,spotTime -HideTableHeaders
+
+    if($MonitorSpots)
+    {
+        Write-Host
+        Write-Host "Received spots:"
+        $RxSpots | Sort-Object activator | Format-Table activator,reference,name -HideTableHeaders | Out-Host
+        Write-Host "All spots:"
+        $Spots | ?{$_.mode -like "FT*"} | Sort-Object frequency,mode,activator | Format-Table activator,reference,frequency,mode,spotTime -HideTableHeaders
+    }
     1..5 | %{Write-Host "." -NoNewline; Start-Sleep -Seconds 1}
 }
