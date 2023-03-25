@@ -15,7 +15,7 @@ while($UTCToday -eq (Get-Date).ToUniversalTime().ToString("yyyy-MM-dd"))
     $Summary = $Contacts | Group-Object Call,Band,Mode
 
     Clear-Host
-    $Summary | select Name,Count | Out-Host
+    $Summary | select Name,Count | Sort-Object Name | Out-Host
     Write-Host "Total contacts: $($Summary.Count)"
     1..5 | %{Write-Host "." -NoNewline; Start-Sleep -Seconds 1}
 }
