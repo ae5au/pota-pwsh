@@ -25,7 +25,7 @@ while($UTCToday -eq (Get-Date).ToUniversalTime().ToString("yyyy-MM-dd"))
         {
             $SpotsLastFetched = Get-Date
             Write-Host "Fetching spots"
-            $SpotResp = Invoke-WebRequest -Uri "https://api.pota.app/spot/activator"
+            $SpotResp = Invoke-WebRequest -Uri "https://api.pota.app/spot/activator" -UseBasicParsing
             if($SpotResp.StatusCode -eq 200)
             {
                 $Spots = $SpotResp.Content | ConvertFrom-Json
