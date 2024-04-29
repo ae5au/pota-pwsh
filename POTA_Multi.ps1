@@ -1,3 +1,8 @@
+# Creates additional ADIF files for multi-park locations.
+# Call script with first parameter being the file to process.
+# Add reference to match in filename and additional references in "$Multi_Refs"
+# This is rough, so use at your own risk.
+
 $ADIF_Path = Resolve-Path $args[0]
 
 if(!$ADIF_Path)
@@ -10,6 +15,7 @@ $Original_Ref = ""
 $Multi_Refs = @()
 $State = ""
 
+# Add / change these as needed
 if($ADIF_Path.Path -match "US-9161")
 {
     $Original_Ref = "US-9161"
